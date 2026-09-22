@@ -1,2 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" />
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{53c121c8-a2d3-4744-875d-90ed8dbeff27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Core">
+      <UniqueIdentifier>{cd66b965-b89d-449b-b816-518d5e467a39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GL">
+      <UniqueIdentifier>{950f223a-9d43-4336-a4c5-9164d3e375de}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Core\CoreHeaders.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\FWCore.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\FWWindows.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GL\glext.h">
+      <Filter>Source\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GL\GLExtensions.h">
+      <Filter>Source\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GL\MyGLContext.h">
+      <Filter>Source\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GL\wglext.h">
+      <Filter>Source\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GL\WGLExtensions.h">
+      <Filter>Source\GL</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Core\FWCore.cpp">
+      <Filter>Source\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\FWWindows.cpp">
+      <Filter>Source\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GL\GLExtensions.cpp">
+      <Filter>Source\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GL\MyGLContext.cpp">
+      <Filter>Source\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GL\WGLExtensions.cpp">
+      <Filter>Source\GL</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
