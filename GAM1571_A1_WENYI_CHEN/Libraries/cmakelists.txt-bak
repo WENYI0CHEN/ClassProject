@@ -1,0 +1,84 @@
+cmake_minimum_required( VERSION 3.30 )
+
+###################
+# GLFW Library
+###################
+
+# File Setup
+file( GLOB_RECURSE GLFWSourceFiles
+    raylib/src/external/glfw/src/context.c
+    raylib/src/external/glfw/src/egl_context.c
+    raylib/src/external/glfw/src/init.c
+    raylib/src/external/glfw/src/input.c
+    raylib/src/external/glfw/src/monitor.c
+    raylib/src/external/glfw/src/null_init.c
+    raylib/src/external/glfw/src/null_joystick.c
+    raylib/src/external/glfw/src/null_monitor.c
+    raylib/src/external/glfw/src/null_window.c
+    raylib/src/external/glfw/src/osmesa_context.c
+    raylib/src/external/glfw/src/platform.c
+    raylib/src/external/glfw/src/vulkan.c
+    raylib/src/external/glfw/src/wgl_context.c
+    raylib/src/external/glfw/src/win32_init.c
+    raylib/src/external/glfw/src/win32_joystick.c
+    raylib/src/external/glfw/src/win32_module.c
+    raylib/src/external/glfw/src/win32_monitor.c
+    raylib/src/external/glfw/src/win32_thread.c
+    raylib/src/external/glfw/src/win32_time.c
+    raylib/src/external/glfw/src/win32_window.c
+    raylib/src/external/glfw/src/window.c
+    raylib/src/external/glfw/src/*.h
+)
+source_group( TREE ${CMAKE_CURRENT_SOURCE_DIR}/raylib/src/external/glfw FILES ${GLFWSourceFiles} )
+
+# Project Creation
+add_library( glfw ${GLFWSourceFiles} )
+
+# Include Directories
+target_include_directories( glfw PUBLIC
+    raylib/src/external/glfw/include
+)
+
+# Defines
+if( MSVC )
+    target_compile_definitions( glfw PUBLIC _GLFW_WIN32 )
+endif()
+
+###################
+# Raylib Library
+###################
+
+# File Setup
+file( GLOB_RECURSE RaylibSourceFiles
+    raylib/src/raudio.c
+    raylib/src/rcore.c
+    raylib/src/rmodels.c
+    raylib/src/rshapes.c
+    raylib/src/rtext.c
+    raylib/src/rtextures.c
+    raylib/src/utils.c
+    raylib/src/*.h
+)
+source_group( TREE ${CMAKE_CURRENT_SOURCE_DIR}/raylib FILES ${RaylibSourceFiles} )
+
+# Project Creation
+add_library( raylib ${RaylibSourceFiles} )
+
+# Libraries to Link
+if( MSVC )
+    target_link_libraries( raylib
+        glfw
+        winmm
+    )
+endif()
+
+if( MSVC )
+    target_compile_definitions( raylib PUBLIC PLATFORM_DESKTOP )
+    target_compile_definitions( raylib PUBLIC GRAPHICS_API_OPENGL_33 )
+    target_compile_options( raylib PRIVATE /experimental:external /external:W0 )
+endif()
+
+if( EMSCRIPTEN )
+    target_compile_definitions( raylib PUBLIC PLATFORM_WEB )
+    target_compile_definitions( raylib PUBLIC GRAPHICS_API_OPENGL_ES2 )
+endif()

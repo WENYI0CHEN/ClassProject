@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{BAC5FDE4-05B3-3B7F-B442-0306BB0F9179}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>raylib</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">build\$(ProjectName)$(Platform)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">build\$(ProjectName)$(Platform)$(Configuration)-int\</IntDir>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">build\$(ProjectName)$(Platform)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">build\$(ProjectName)$(Platform)$(Configuration)-int\</IntDir>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>Libraries\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /experimental:external</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <MinimalRebuild>
+      </MinimalRebuild>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <SupportJustMyCode>
+      </SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;PLATFORM_DESKTOP;GRAPHICS_API_OPENGL_33;_GLFW_WIN32</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;PLATFORM_DESKTOP;GRAPHICS_API_OPENGL_33;_GLFW_WIN32</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Libraries\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>Libraries\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>Libraries\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /experimental:external</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <MinimalRebuild>
+      </MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode>
+      </SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;PLATFORM_DESKTOP;GRAPHICS_API_OPENGL_33;_GLFW_WIN32</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;PLATFORM_DESKTOP;GRAPHICS_API_OPENGL_33;_GLFW_WIN32</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Libraries\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>Libraries\raylib\src\external\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Libraries\raylib\src\config.h" />
+    <ClInclude Include="Libraries\raylib\src\external\RGFW.h" />
+    <ClInclude Include="Libraries\raylib\src\external\cgltf.h" />
+    <ClInclude Include="Libraries\raylib\src\external\dirent.h" />
+    <ClInclude Include="Libraries\raylib\src\external\dr_flac.h" />
+    <ClInclude Include="Libraries\raylib\src\external\dr_mp3.h" />
+    <ClInclude Include="Libraries\raylib\src\external\dr_wav.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glad.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glad_gles2.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\deps\getopt.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\deps\glad\gl.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\deps\glad\gles2.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\deps\glad\vulkan.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\deps\mingw\_mingw_dxhelper.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\deps\mingw\dinput.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\deps\mingw\xinput.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\include\GLFW\glfw3.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\include\GLFW\glfw3native.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\src\cocoa_joystick.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\src\cocoa_platform.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\src\cocoa_time.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\src\internal.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\src\linux_joystick.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\src\mappings.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\src\null_joystick.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\src\null_platform.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\src\platform.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\src\posix_poll.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\src\posix_thread.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\src\posix_time.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\src\win32_joystick.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\src\win32_platform.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\src\win32_thread.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\src\win32_time.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\src\wl_platform.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\src\x11_platform.h" />
+    <ClInclude Include="Libraries\raylib\src\external\glfw\src\xkb_unicode.h" />
+    <ClInclude Include="Libraries\raylib\src\external\jar_mod.h" />
+    <ClInclude Include="Libraries\raylib\src\external\jar_xm.h" />
+    <ClInclude Include="Libraries\raylib\src\external\m3d.h" />
+    <ClInclude Include="Libraries\raylib\src\external\miniaudio.h" />
+    <ClInclude Include="Libraries\raylib\src\external\msf_gif.h" />
+    <ClInclude Include="Libraries\raylib\src\external\par_shapes.h" />
+    <ClInclude Include="Libraries\raylib\src\external\qoa.h" />
+    <ClInclude Include="Libraries\raylib\src\external\qoi.h" />
+    <ClInclude Include="Libraries\raylib\src\external\rl_gputex.h" />
+    <ClInclude Include="Libraries\raylib\src\external\rprand.h" />
+    <ClInclude Include="Libraries\raylib\src\external\sdefl.h" />
+    <ClInclude Include="Libraries\raylib\src\external\sinfl.h" />
+    <ClInclude Include="Libraries\raylib\src\external\stb_image.h" />
+    <ClInclude Include="Libraries\raylib\src\external\stb_image_resize2.h" />
+    <ClInclude Include="Libraries\raylib\src\external\stb_image_write.h" />
+    <ClInclude Include="Libraries\raylib\src\external\stb_perlin.h" />
+    <ClInclude Include="Libraries\raylib\src\external\stb_rect_pack.h" />
+    <ClInclude Include="Libraries\raylib\src\external\stb_truetype.h" />
+    <ClInclude Include="Libraries\raylib\src\external\tinyobj_loader_c.h" />
+    <ClInclude Include="Libraries\raylib\src\external\vox_loader.h" />
+    <ClInclude Include="Libraries\raylib\src\external\win32_clipboard.h" />
+    <ClCompile Include="Libraries\raylib\src\raudio.c" />
+    <ClInclude Include="Libraries\raylib\src\raylib.h" />
+    <ClInclude Include="Libraries\raylib\src\raymath.h" />
+    <ClInclude Include="Libraries\raylib\src\rcamera.h" />
+    <ClCompile Include="Libraries\raylib\src\rcore.c" />
+    <ClInclude Include="Libraries\raylib\src\rgestures.h" />
+    <ClInclude Include="Libraries\raylib\src\rlgl.h" />
+    <ClCompile Include="Libraries\raylib\src\rmodels.c" />
+    <ClCompile Include="Libraries\raylib\src\rshapes.c" />
+    <ClCompile Include="Libraries\raylib\src\rtext.c" />
+    <ClCompile Include="Libraries\raylib\src\rtextures.c" />
+    <ClCompile Include="Libraries\raylib\src\utils.c" />
+    <ClInclude Include="Libraries\raylib\src\utils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="glfw.vcxproj">
+      <Project>{6934AF56-9345-3443-B51C-FBB34438C8D6}</Project>
+      <Name>glfw</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
