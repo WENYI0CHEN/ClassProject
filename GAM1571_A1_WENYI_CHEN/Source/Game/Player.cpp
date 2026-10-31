@@ -9,6 +9,7 @@ const float Player::c_startingHealth = 100.0f;
 Player::Player(Game* pGame)
     : m_pickupRadius( c_pickupRadius )
     , m_health( c_startingHealth )
+    ,GameObject(m_pGame)
 {
     m_active = true;
 

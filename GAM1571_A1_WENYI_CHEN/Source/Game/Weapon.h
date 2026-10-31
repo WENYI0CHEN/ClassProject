@@ -2,6 +2,7 @@
 
 #include "raylib.h"
 #include "Helpers/Vector.h"
+#include"Types.h"
 
 class Enemy;
 class Game;

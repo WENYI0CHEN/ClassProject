@@ -3,6 +3,7 @@
 #include "raylib.h"
 #include "Helpers/Vector.h"
 #include "Tween.h"
+#include"GameObject.h"
 
 class Pickup : public GameObject
 {
