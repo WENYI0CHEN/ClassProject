@@ -20,6 +20,7 @@ public:
 
     virtual void update(float deltaTime) override;
     virtual void draw(bool drawDebugData) override;
+    virtual void reset()override;
 
     void startDeathAnim();
     bool isFadingOut() { return m_fadingOut; }
@@ -31,6 +32,7 @@ public:
     void applyDamage(float damage);
     void setHealth(float health) { m_health = health; }
     void setActive(bool active) override;
+    
 
 private:
     float m_health = 0.0f;

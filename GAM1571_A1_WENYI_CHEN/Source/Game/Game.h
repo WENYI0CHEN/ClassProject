@@ -4,11 +4,13 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
-
+#include "Helpers/Sprite.h"
 #include "raylib.h"
 #include "Helpers/InputTypes.h"
 #include "Helpers/Vector.h"
 #include "Types.h"
+#include "Weapon_Gun.h"
+#include"Weapon_Gun_02.h"
 
 class Enemy;
 class Pickup;
@@ -24,6 +26,7 @@ private:
     static const int c_initialXPRequiredToLevelUp;
     static const float c_XPMultiplierPerLevel;
     static const float c_initialEnemySpawnTime;
+    static const int c_weaponMaxAmountLevel;
 
 public:
     Game();
@@ -81,4 +84,6 @@ private:
     std::vector<Pickup*> m_pickups;
 
     std::unordered_map<std::string, Texture2D> m_textures;
+
+    
 };

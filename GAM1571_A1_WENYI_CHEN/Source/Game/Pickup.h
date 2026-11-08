@@ -5,6 +5,7 @@
 #include "Tween.h"
 #include"GameObject.h"
 
+
 class Pickup : public GameObject
 {
 private:
@@ -17,7 +18,7 @@ public:
 
     virtual void update(float deltaTime) override;
     virtual void draw(bool drawDebugData) override;
-
+    virtual void reset()override;
     void pickupObject(vec2 destPos);
     bool isAnimating() { return m_animating; }
 

@@ -14,6 +14,7 @@ Pickup::Pickup(Game* pGame)
 
     m_position.set( 0, 0 );
     m_radius = c_size;
+ 
 }
 
 Pickup::~Pickup()
@@ -47,4 +48,9 @@ void Pickup::pickupObject(vec2 destPos)
 
     m_tweenPosX.start( destPos.x, 0.5f, 0.0f, easingInBack );
     m_tweenPosY.start( destPos.y, 0.5f, 0.0f, easingInBack );
+}
+
+void Pickup::reset()
+{
+    setActive(false);
 }

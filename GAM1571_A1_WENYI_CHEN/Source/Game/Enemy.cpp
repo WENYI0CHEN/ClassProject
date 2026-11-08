@@ -5,9 +5,9 @@
 #include "Player.h"
 #include "Tween.h"
 
-const float Enemy::c_startingHealth = 1.0f;
-const float Enemy::c_speed = 0.0f;
-const float Enemy::c_animSpeed = 0.3f;
+const float Enemy::c_startingHealth = 10.0f;
+const float Enemy::c_speed = 50.0f;
+const float Enemy::c_animSpeed = 1.0f;
 
 Enemy::Enemy(Game* pGame)
     : GameObject( pGame )
@@ -55,6 +55,12 @@ void Enemy::update(float deltaTime)
 
     // Update animation.
     m_animTimer += deltaTime;
+    if (m_animTimer >= c_animSpeed)
+    {
+        m_animTimer -= c_animSpeed;
+        m_currentFrame = 1 - m_currentFrame;
+
+    }
 }
 
 void Enemy::draw(bool drawDebugData)
@@ -92,4 +98,9 @@ void Enemy::setActive(bool active)
     {
         m_tweenSize.start( 1.0f, 1.5f, 0.0f, easingOutElastic );
     }
+}
+
+void Enemy::reset()
+{
+    setActive(false);
 }

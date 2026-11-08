@@ -29,7 +29,7 @@ public:
 
 private:
     std::vector<Bullet*> m_bullets;
-
+    Sprite* m_pSprite;
     float m_currentBulletSpawnTime = 0.0f;
     float m_bulletSpawnTimer = 0.0f;
 };

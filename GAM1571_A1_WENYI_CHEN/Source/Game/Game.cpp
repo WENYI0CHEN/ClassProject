@@ -8,12 +8,14 @@
 #include "Player.h"
 #include "Helpers/Sprite.h"
 #include "Weapon_Gun.h"
+#include"Weapon_Gun_02.h"
 
 const int Game::c_numEnemies = 1000;
 const int Game::c_numPickups = 300;
 const int Game::c_initialXPRequiredToLevelUp = 10;
 const float Game::c_XPMultiplierPerLevel = 1.5f;
 const float Game::c_initialEnemySpawnTime = 3.0f;
+const int Game::c_weaponMaxAmountLevel = 6;
 
 Game::Game()
 {
@@ -21,7 +23,9 @@ Game::Game()
     m_textures["Player"] = LoadTexture( "Data/Textures/knight_run_anim_f1.png" );
     m_textures["Bat1"] = LoadTexture( "Data/Textures/fly_anim_f1.png" );
     m_textures["Bat2"] = LoadTexture( "Data/Textures/fly_anim_f2.png" );
-
+    m_textures["Weapon_Gun"] = LoadTexture("Data/Textures/weapon_gun_01.png");
+    m_textures["Bullet_01"] = LoadTexture("Data/Textures/bullet_01.png");
+    m_textures["Weapon_Gun_02"] = LoadTexture("Data/Textures/weapon_gun_02.png");
     // Create the background.
     m_pBG = new Sprite( m_textures["BG"] );
 
@@ -29,7 +33,9 @@ Game::Game()
     m_pPlayer = new Player( this );
 
     m_weapons.push_back( new Weapon_Gun( this ) );
+    m_weapons.push_back(new Weapon_Gun_02(this));
 
+  
     // Fill a vector with enemies.
     for( int i=0; i<c_numEnemies; i++ )
     {
@@ -80,18 +86,30 @@ void Game::reset()
     m_experiencePoints = 0;
     m_timePlayed = 0;
     m_currentXPRequiredToLevelUp = c_initialXPRequiredToLevelUp;
-
+    
     m_enemySpawnTimer = 0;
 
     for( Weapon* pWeapon : m_weapons )
     {
         pWeapon->reset();
     }
+    
+    if (m_weapons.size() > 2) 
+    {
+        for (int i = 2; i < m_weapons.size(); ++i)
+        {
+            delete m_weapons[i];
 
+            m_weapons.resize(2);
+        }
+0    }
+        
+    
     for( Enemy* pEnemy : m_enemies )
     {
         pEnemy->reset();
     }
+  
 
     for( Pickup* pPickup : m_pickups )
     {
@@ -103,10 +121,10 @@ void Game::reset()
     m_pPlayer->setPosition( { GetScreenWidth()/2.0f, GetScreenHeight()/2.0f } );
 
     // HACK: Manually spawning 2 enemies for testing:
-    m_enemies[0]->setActive( true );
+    /*m_enemies[0]->setActive( true );
     m_enemies[0]->setPosition( vec2( 100.0f, 100.0f ) );
     m_enemies[1]->setActive( true );
-    m_enemies[1]->setPosition( vec2( 100.0f, 150.0f ) );
+    m_enemies[1]->setPosition( vec2( 100.0f, 150.0f ) );*/
 }
 
 void Game::update(float deltaTime)
@@ -117,14 +135,22 @@ void Game::update(float deltaTime)
     }
 
     // Update the player, enemies and pickups.
-    if( m_gameOver == false )
+    if(m_pPlayer->isActive() == true)
     {
         m_pPlayer->update( deltaTime );
-    }
 
-    for( Weapon* pWeapon : m_weapons )
-    {
-        pWeapon->update( deltaTime );
+        for (Weapon* pWeapon : m_weapons)
+        {
+            pWeapon->update(deltaTime);
+        }
+
+        for (Pickup* pPickup : m_pickups)
+        {
+            if (pPickup->isActive())
+            {
+                pPickup->update(deltaTime);
+            }
+        }
     }
 
     for( Enemy* pEnemy : m_enemies )
@@ -132,14 +158,6 @@ void Game::update(float deltaTime)
         if( pEnemy->isActive() )
         {
             pEnemy->update( deltaTime );
-        }
-    }
-
-    for( Pickup* pPickup : m_pickups )
-    {
-        if( pPickup->isActive() )
-        {
-            pPickup->update( deltaTime );
         }
     }
 
@@ -178,10 +196,6 @@ void Game::draw()
         }
     }
 
-    for( Weapon* pWeapon : m_weapons )
-    {
-        pWeapon->draw( m_drawDebugData );
-    }
 
     for( Enemy* pEnemy : m_enemies )
     {
@@ -191,9 +205,18 @@ void Game::draw()
         }
     }
 
-    if( m_gameOver == false )
+    if( m_pPlayer->isActive() == true)
     {
+        for (Weapon* pWeapon : m_weapons)
+        {
+            if (pWeapon->isActive())
+            {
+                pWeapon->draw(m_drawDebugData);
+            }
+          
+        }
         m_pPlayer->draw( m_drawDebugData );
+      
     }
 
     // Draw some text.
@@ -205,6 +228,9 @@ void Game::draw()
 
         snprintf( tempString, 100, "Kills: %d", m_enemiesKilled );
         DrawText( tempString, 500, 5, 32, LIGHTGRAY );
+
+        snprintf(tempString, 100, "XP: %d/%d", m_experiencePoints,m_currentXPRequiredToLevelUp);
+        DrawText(tempString, 800, 5, 32, LIGHTGRAY);
     }
 }
 
@@ -261,6 +287,7 @@ void Game::spawnEnemies()
             pos = vec2(randFloat(0, 1280), randFloat(-264, -64));
         }
 
+
         spawnEnemy( pos );
     }
 }
@@ -278,6 +305,12 @@ void Game::spawnEnemy(vec2 pos)
             break;
         }
     }
+    if (pEnemy != nullptr)
+    {
+        pEnemy->setPosition(pos);
+        pEnemy->setActive(true);
+        pEnemy->setHealth(1.0f);
+    }
 }
 
 void Game::spawnPickup(vec2 pos)
@@ -292,6 +325,12 @@ void Game::spawnPickup(vec2 pos)
             pPickup = m_pickups[i];
             break;
         }
+     
+    }
+    if (pPickup != nullptr)
+    {
+        pPickup->setPosition(pos);
+        pPickup->setActive(true);
     }
 }
 
@@ -310,6 +349,13 @@ void Game::handleCollisions()
         {
             vec2 enemyPos = m_enemies[e]->getPosition();
             float enemyRadius = m_enemies[e]->getRadius();
+            vec2 playerPos = m_pPlayer->getPosition();
+            float playerRadius = m_pPlayer->getRadius();
+
+            if ((playerPos - enemyPos).length() < playerRadius + enemyRadius)
+            {
+                m_pPlayer->handleCollision(enemyPos,vec2(0,0));
+            }
         }
     }
 
@@ -340,6 +386,12 @@ void Game::HandleXP()
     {
         m_experiencePoints -= m_currentXPRequiredToLevelUp;
         m_currentXPRequiredToLevelUp = (int)(m_currentXPRequiredToLevelUp*c_XPMultiplierPerLevel);
+        if (m_weapons.size() < c_weaponMaxAmountLevel)
+        {
+            Weapon_Gun_02* temWeapon = new Weapon_Gun_02(this);
+            temWeapon->setAngle(2.0f * PI * (m_weapons.size()) / c_weaponMaxAmountLevel);
+            m_weapons.push_back(temWeapon);
+        }
 
         for( Weapon* pWeapon : m_weapons )
         {

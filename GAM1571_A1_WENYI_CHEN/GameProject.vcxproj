@@ -169,6 +169,7 @@
     <ClCompile Include="Source\Game\Tween.cpp" />
     <ClCompile Include="Source\Game\Weapon.cpp" />
     <ClCompile Include="Source\Game\Weapon_Gun.cpp" />
+    <ClCompile Include="Source\Game\Weapon_Gun_02.cpp" />
     <ClCompile Include="Source\Helpers\MathFuncs.cpp" />
     <ClCompile Include="Source\Helpers\Sprite.cpp" />
     <ClCompile Include="Source\Main.cpp" />
@@ -184,6 +185,7 @@
     <ClInclude Include="Source\Game\Types.h" />
     <ClInclude Include="Source\Game\Weapon.h" />
     <ClInclude Include="Source\Game\Weapon_Gun.h" />
+    <ClInclude Include="Source\Game\Weapon_Gun_02.h" />
     <ClInclude Include="Source\Helpers\InputTypes.h" />
     <ClInclude Include="Source\Helpers\MathFuncs.h" />
     <ClInclude Include="Source\Helpers\Sprite.h" />

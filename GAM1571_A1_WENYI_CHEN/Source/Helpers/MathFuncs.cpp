@@ -1,4 +1,5 @@
 #include <random>
+#include"MathFuncs.h"
 
 float randFloat(float min, float max)
 {

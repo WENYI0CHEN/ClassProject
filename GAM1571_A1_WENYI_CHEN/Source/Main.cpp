@@ -42,7 +42,7 @@ int main()
 void UpdateDrawFrame()
 {
     // Deal with keyboard events.
-    for( int i=0; i<256; i++ )
+    for( int i=0; i<512; i++ )
     {
         if( IsKeyPressed(i) )
         {

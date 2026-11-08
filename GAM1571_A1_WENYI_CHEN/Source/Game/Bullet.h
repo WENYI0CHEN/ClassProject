@@ -3,6 +3,8 @@
 #include "raylib.h"
 #include "Helpers/Vector.h"
 #include "GameObject.h"
+#include "Helpers/Sprite.h"
+#include"Game.h"
 
 class Bullet : public GameObject
 {
@@ -13,8 +15,10 @@ private:
 public:
     Bullet(Game* pGame);
     virtual ~Bullet();
-
+    virtual void setActive(bool active)override;
     virtual void update(float deltaTime) override;
+    virtual void draw(bool drawDebugData)override;
+    virtual void reset()override;
 
     // Getters.
 
@@ -23,4 +27,5 @@ public:
 
 private:
     vec2 m_direction = 0;
+    Sprite* m_pSprite;
 };
