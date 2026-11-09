@@ -79,8 +79,8 @@ void Enemy::startDeathAnim()
 
 void Enemy::applyDamage(float damage)
 {
-    m_health = 0;
-    if( m_health < 0 )
+    m_health -= damage;
+    if( m_health <= 0 )
     {
         startDeathAnim();
     }

@@ -162,6 +162,7 @@
   <ItemGroup>
     <ClCompile Include="Source\Game\Bullet.cpp" />
     <ClCompile Include="Source\Game\Enemy.cpp" />
+    <ClCompile Include="Source\Game\Enemy_02.cpp" />
     <ClCompile Include="Source\Game\Game.cpp" />
     <ClCompile Include="Source\Game\GameObject.cpp" />
     <ClCompile Include="Source\Game\Pickup.cpp" />
@@ -177,6 +178,7 @@
   <ItemGroup>
     <ClInclude Include="Source\Game\Bullet.h" />
     <ClInclude Include="Source\Game\Enemy.h" />
+    <ClInclude Include="Source\Game\Enemy_02.h" />
     <ClInclude Include="Source\Game\Game.h" />
     <ClInclude Include="Source\Game\GameObject.h" />
     <ClInclude Include="Source\Game\Pickup.h" />

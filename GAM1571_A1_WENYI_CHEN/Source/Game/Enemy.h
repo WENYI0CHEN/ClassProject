@@ -34,7 +34,7 @@ public:
     void setActive(bool active) override;
     
 
-private:
+protected:
     float m_health = 0.0f;
 
     Sprite* m_pSprites[2] = {};

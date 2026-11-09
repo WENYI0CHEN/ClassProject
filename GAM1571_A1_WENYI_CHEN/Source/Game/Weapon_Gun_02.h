@@ -28,8 +28,9 @@ public:
     virtual void handleCollisions(EnemyList& enemyList) override;
     virtual void levelUp() override;
     void startDeathAnim();
-    void setActive(float deltaTime);
+   /* void setActive(float deltaTime);*/
     void setAngle(float angle) { m_angle = angle; }
+    void freezeTimer();
 
 private:
     Sprite* m_pSprite;
@@ -37,9 +38,9 @@ private:
     float m_angle = 0;
     float m_weaponRadius = 0;
     int m_weaponDamage = 0;
-    float m_currentWeaponSpawnTime = 0.0f;
-    bool m_fadingOut = false;
+    float m_currentWeaponFreezeTimer = 0.0f;
+   /* bool m_fadingOut = false;
     Tween m_tweenSize;
     float m_visibleScale = 1.0f;
-    int m_currentWeaponAmount = 0;
+    int m_currentWeaponAmount = 0;*/
 };

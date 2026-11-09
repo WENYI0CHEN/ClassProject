@@ -3,6 +3,7 @@
 
 #include "Game.h"
 #include "Enemy.h"
+#include "Enemy_02.h"
 #include "Helpers/MathFuncs.h"
 #include "Pickup.h"
 #include "Player.h"
@@ -26,6 +27,8 @@ Game::Game()
     m_textures["Weapon_Gun"] = LoadTexture("Data/Textures/weapon_gun_01.png");
     m_textures["Bullet_01"] = LoadTexture("Data/Textures/bullet_01.png");
     m_textures["Weapon_Gun_02"] = LoadTexture("Data/Textures/weapon_gun_02.png");
+    m_textures["Clown1"] = LoadTexture("Data/Textures/clown_anim_f1.png");
+    m_textures["Clown2"] = LoadTexture("Data/Textures/clown_anim_f2.png");
     // Create the background.
     m_pBG = new Sprite( m_textures["BG"] );
 
@@ -39,7 +42,11 @@ Game::Game()
     // Fill a vector with enemies.
     for( int i=0; i<c_numEnemies; i++ )
     {
-        Enemy* pEnemy = new Enemy( this );
+        Enemy* pEnemy;
+        if(i%2==0)
+        pEnemy = new Enemy(this);
+        else
+        pEnemy = new Enemy_02(this);
         m_enemies.push_back( pEnemy );
     }
 
@@ -102,7 +109,7 @@ void Game::reset()
 
             m_weapons.resize(2);
         }
-0    }
+    }
         
     
     for( Enemy* pEnemy : m_enemies )
@@ -309,7 +316,6 @@ void Game::spawnEnemy(vec2 pos)
     {
         pEnemy->setPosition(pos);
         pEnemy->setActive(true);
-        pEnemy->setHealth(1.0f);
     }
 }
 
@@ -337,9 +343,9 @@ void Game::spawnPickup(vec2 pos)
 void Game::handleCollisions()
 {
     // Weapons hitting enemies.
-    for( Weapon* pWeapon : m_weapons )
+    for (Weapon* pWeapon : m_weapons)
     {
-        pWeapon->handleCollisions( m_enemies );
+        pWeapon->handleCollisions(m_enemies);
     }
 
     // Enemies hitting the player.

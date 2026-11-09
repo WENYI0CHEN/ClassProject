@@ -5,7 +5,7 @@
 #include "Player.h"
 
 const int Weapon_Gun::c_numBullets = 5;
-const int Weapon_Gun::c_bulletDamage = 1;
+const int Weapon_Gun::c_bulletDamage = 10;
 const float Weapon_Gun::c_initialBulletSpawnTime = 0.8f;
 const float Weapon_Gun::c_bulletSpawnTimeDecreasePerLevel = 0.1f;
 
@@ -99,11 +99,14 @@ void Weapon_Gun::handleCollisions(EnemyList& enemyList)
 					vec2 ePos = enemyList[e]->getPosition();
 					if ((bulletPos - ePos).length() < bulletRadius + enemyList[e]->getRadius())
 					{
-						if (enemyList[e]->getHealth() - c_bulletDamage <= 0)
+						if (enemyList[e]->getHealth() > 0 )
 						{
-							enemyList[e]->startDeathAnim();
+							enemyList[e]->applyDamage(c_bulletDamage);
 							m_bullets[b]->setActive(false);
-							m_pGame->onEnemyKilled(bulletPos);
+							if (enemyList[e]->getHealth()<=0)
+							{
+								m_pGame->onEnemyKilled(bulletPos);
+							}
 						}
 						break;
 					}

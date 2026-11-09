@@ -33,7 +33,7 @@ void Bullet::setActive(bool active)
 
 void Bullet::draw(bool drawDebugData)
 {
-    m_pSprite->draw({ m_position.x + 55,m_position.y }, 0.0f, vec2(0.2f, 0.2f));
+    m_pSprite->draw({ m_position.x,m_position.y }, 0.0f, vec2(0.2f, 0.2f));
 }
 
 void Bullet::reset()
